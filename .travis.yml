@@ -9,7 +9,7 @@ script: html5validator --log INFO --ignore google7fe3f56aa4765752.html
 
 after_success:
   - aws configure set preview.cloudfront true
-  - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ] && ./upload.sh'
+  - 'if [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ]; then ./upload.sh; fi'
 
 env:
   global:
