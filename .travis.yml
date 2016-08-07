@@ -7,6 +7,10 @@ install:
 
 script: html5validator --log INFO --ignore google7fe3f56aa4765752.html
 
+after_success:
+  - aws configure set preview.cloudfront true
+  - [ "${TRAVIS_PULL_REQUEST}" = "false" ] && [ "${TRAVIS_BRANCH}" = "master" ] && ./upload.sh
+
 env:
   global:
   - secure: ta3fA9bliRwavUJ6vCA7DHbFCkR8Wshcrz93RtXz2j49gIFrY3atsLkIZTeMQZ/Yn/fXBBYu30Ifo+UoV18KzcJUHVzck1+Hk3TEgE7dOJdJX0DwVwLKgTJCMFK5/IJMZQTfeu8O9lScZJYynUOBZ6+kXtMlnjdgcu6XRJBhU6z4+Lean7A4AY8ImQY4g5GvFp73Q/145xlfDkvcJu/4g/guZumal2TUfaiUOFZiYUkqTUdcXUurNsflRl6PbULLLp7Qem8uw/8o0/HrYqICXqdnh1IcBlP2PakUoJbZgT1rXvom5piR9sve07EKhJrmdjOLq/jt7fQM6l5rvo65WvfiC0j9UdFIDF0LmtRPfG+FCWrNyohJhSxJVUwhUzEGkz24fG21nxGvAvbucVJk7ft3HmLOuYB+x4KXeH33G2YoLsxv+8DE+MdiRZgZGg3jR5ZggHb4JCyZzAiiRa0L7+f0JE1P6Bg4YktnYtA/PmV2bSu8vBKIDNH+8BqxpBIGRrJVPlafZQ8dXQAEvSfQWGChYLA401SqCzdpKGu4UNQ8edtUWnlrFJPQAoZZtOU1Bnynxx3MkRHGzoAT3hkIBXzl9xww0pIdhyaK8+oMO9uA2pdbHobj/LVga0rpgTMi1eJ5IHsfIB4u8EufO6XlK+GZaMgRM7fl+9wCa9TEo3Y=
